@@ -1,0 +1,23 @@
+body{
+    text-align: center;
+    background-color: #FF7070;
+    color:#FFE3E3;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+button{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: #383B42;
+    color: aliceblue;
+    font-weight: 600;
+}
+
+li{
+    list-style: none;
+}
+b{
+    color:#383B42;
+}

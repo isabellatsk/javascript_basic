@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios JavaScript básico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Contador de <b>cliques</b></h1>
+    <button onclick="contar()">Clique</button>
+    <button onclick="zerar()">Zerar</button>
+    <section id="result">
+        <p>Cliques:<b>0</b></p>
+    </section>  
+    <section id="rank">
+        <p>Maior número de cliques:</p>
+    </section>
+    <script>
+        let contador = 0 
+        let maxCliques = 0;
+        let res = document.querySelector('section#result')
+        let resrank = document.querySelector('section#rank')
+
+        function contar() {
+            contador ++ 
+            if (contador > maxCliques) {
+                maxCliques = contador;
+            }
+            res.innerHTML = `<p>Cliques: <b>${contador}</b></p>`;
+            resrank.innerHTML = `<p>Maior número de cliques: <b>${maxCliques}</b></p>`;
+        }
+
+        function zerar() {
+            contador = 0
+            res.innerHTML = null
+            alert('Contador foi zerado!');
+        }
+    </script>
+    <hr>
+
+
+
+
+
+    <h1>Média do <b>aluno</b></h1>
+    <button onclick="media()">Calcular média</button>
+    <section id="situacao">
+        <p>Resultado...</p>
+    </section>
+    <script>
+        function media() {
+            let nom = window.prompt('Digite o nome do aluno:') 
+            let n1 = Number(window.prompt(`Digite a primeira nota do aluno(a) ${nom}:`))
+            let n2 = Number(window.prompt(`Digite a segunda nota do aluno(a) ${nom}:`))
+            let n3 = Number(window.prompt(`Digite a terceira nota do aluno(a) ${nom}:`))
+            med = (n1 + n2 + n3)/3
+
+            let res1 = document.getElementById('situacao')
+            res1.innerHTML = `<p>Média final de <b>${nom}:</b></p>`
+            res1.innerHTML += `<p>Notas obtidas:<b> ${n1}, ${n2} e ${n3}</b></p>`
+            res1.innerHTML += `<p>Média final:<b>${med.toFixed(1)}</b></p>`
+        }
+    </script>
+    <hr>
+
+
+
+
+
+    <h1>Consultar <b>Informações do Aluno</b></h1>
+    <button onclick="inicio()">Clique</button>
+    <section id="resultado">
+        <p>Informações...</p>
+    </section>
+    <script>
+        const alunos = [
+            { nome: 'Lucas Silva', matricula: '12345', idade: '20', curso: 'Matemática' },
+            { nome: 'Maria Oliveira', matricula: '67890', idade: '22', curso: 'Física' },
+            { nome: 'Ana Santos', matricula: '54321', idade: '19', curso: 'Química' }
+        ];
+        function inicio() {
+            let nome2 = window.prompt('Digite o nome do aluno:').toLowerCase();
+            let resultado = document.getElementById('resultado');
+
+            let aluno = alunos.find(a => a.nome.toLowerCase() === nome2.toLowerCase());
+
+            if (aluno) {
+                resultado.innerHTML = `<p>Confira as informações:</p>
+                                        <p><b>Nome:</b> ${aluno.nome}</p>
+                                        <p><b>Matrícula:</b> ${aluno.matricula}</p>
+                                        <p><b>Idade:</b> ${aluno.idade}</p>
+                                        <p><b>Curso:</b> ${aluno.curso}</p>`;
+            } else {
+                resultado.innerHTML = `<p><b>Aluno não encontrado.</b></p>`;
+            }
+        }
+    </script>
+    <hr>
+
+
+
+
+
+    <h1>Trabalhando com <b>números</b></h1>
+    <button onclick="calcular()">Clique para calcular</button>
+    <section id="res">
+        <p>Resultado...</p>
+    </section>
+    <script>
+        function calcular() {
+            let n1 = Number(window.prompt('Digite um número inteiro: '));
+
+            if (n1 < 0) {
+                document.querySelector('section#res').innerHTML = '<p>Por favor, insira um número válido.</p>';
+                return;
+            }
+
+            let dobro = n1 * 2;
+            let metade = n1 / 2;
+            let quadrado = n1 * n1;
+            let raizQuadrada = Math.sqrt(n1);
+
+            document.querySelector('section#res').innerHTML = `
+                <p>Em relação ao número ${n1}:</p>
+                <p><b>O dobro</b> é ${dobro}</p>
+                <p><b>A metade</b> é ${metade}</p>
+                <p><b>O quadrado</b> é ${quadrado}</p>
+                <p><b>A raiz quadrada</b> é ${raizQuadrada.toFixed(2)}</p>
+            `;
+        }
+    </script>
+    <hr>
+
+
+
+
+
+    <h1>Cardápio da <b>Semana</b></h1>
+    <button onclick="mostrarMenu('sabado')">Sábado</button>
+    <button onclick="mostrarMenu('domingo')">Domingo</button>
+    <button onclick="mostrarMenu('quarta')">Quarta</button>
+    <button onclick="mostrarMenu('sexta')">Sexta</button>
+    <section id="saida">
+        <p>Cardápio...</p>
+    </section>
+    <script>
+        function mostrarMenu(dia) {
+            let menu = '';
+            switch(dia) {
+                case 'sabado':
+                    menu = `<h2>Cardápio de <b>Sábado:</b></h2>
+                            <p>Pizza Margherita</p>
+                            <p>Pizza Quattro Stagioni</p>
+                            <p>Pizza Calabresa</p>
+                            `;
+                    break;
+                case 'domingo':
+                    menu = `<h2>Cardápio de <b>Domingo:</b></h2>
+                            <p>Pizza Portuguesa</p>
+                            <p>Pizza Frango com Catupiry</p>
+                            <p>Pizza Pepperoni</p>`;
+                    break;
+                case 'quarta':
+                    menu = `<h2>Cardápio de <b>Quarta:</b></h2>
+                            <p>Pizza Vegetariana</p>
+                            <p>Pizza Marguerita com Rúcula</p>
+                            <p>Pizza Bacon</p>`;
+                    break;
+                case 'sexta':
+                    menu = `<h2>Cardápio de <b>Sexta:</b></h2>
+                            <p>Pizza de Alho e Óleo</p>
+                            <p>Pizza de Abobrinha com Queijo</p>
+                            <p>Pizza de Picanha</p>`;
+                    break;
+                default:
+                    menu = `<p>Selecione um dia para ver o cardápio.</p>`;
+                    break;
+            }
+            document.getElementById('saida').innerHTML = menu;
+        }
+    </script>
+    <hr>
+</body>
+</html>
